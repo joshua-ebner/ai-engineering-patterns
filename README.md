@@ -69,6 +69,30 @@ Out of scope for Phase 1:
 - Deployment infrastructure  
 
 ---
+## Data Pipeline Overview
+
+This repository uses a reproducible documentation pipeline
+to build an AI Engineering knowledge base.
+
+Raw documentation is not committed to the repo.
+Instead, source documents are pulled programmatically.
+
+To fetch the LangChain documentation corpus:
+
+```bash
+bash scripts/pull_langchain_docs.sh
+```
+
+This will populate:
+
+```text
+data/raw/langchain/
+```
+
+Subsequent ingestion and chunking steps operate on this data.
+
+
+---
 
 
 ## Future Directions
