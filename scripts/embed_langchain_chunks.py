@@ -9,9 +9,11 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain_core.documents import Document
 
+from chromadb.config import Settings
+
 # ---------- Paths ----------
 CHUNKS_FILE = Path("data/processed/langchain/chunks.jsonl")
-DB_DIR = Path("data/vectorstore/langchain")
+DB_DIR = Path("data/vectorstore/langchain_db")
 
 # ---------- Rebuild DB cleanly (dev-friendly) ----------
 if DB_DIR.exists():
@@ -41,11 +43,22 @@ embeddings = OpenAIEmbeddings(
     chunk_size=100  # helps avoid rate limits on larger corpora
 )
 
+# vectorstore = Chroma.from_documents(
+#     documents=docs,
+#     embedding=embeddings,
+#     persist_directory=str(DB_DIR)
+# )
+
 vectorstore = Chroma.from_documents(
     documents=docs,
     embedding=embeddings,
-    persist_directory=str(DB_DIR)
+    persist_directory=str(DB_DIR),
+    client_settings=Settings(
+        anonymized_telemetry=False,
+        is_persistent=True
+    )
 )
 
 print(f"Vectorstore saved → {DB_DIR}")
+print("Collection count:", vectorstore._collection.count())
 print("Done.")
