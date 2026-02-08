@@ -91,6 +91,61 @@ data/raw/langchain/
 
 Subsequent ingestion and chunking steps operate on this data.
 
+---
+
+## RAG API v1
+
+A simple Retrieval-Augmented Generation (RAG) API built with:
+
+- FastAPI
+- LangChain
+- OpenAI embeddings
+- Chroma vector store
+
+This service retrieves relevant document chunks and generates grounded answers with source citations.
+
+---
+
+### Features
+
+- Semantic retrieval over a local vector database
+- Distance-threshold filtering
+- Grounded answer generation
+- Source attribution with snippets
+- Refusal for low-relevance queries
+- JSONL logging for analysis
+
+---
+
+### Running the API
+
+Start the server:
+
+```bash
+uvicorn apps.rag.rag_api:app --reload
+```
+
+Open interactive docs:
+
+`http://127.0.0.1:8000/docs`
+
+Health check:
+```bash
+curl http://127.0.0.1:8000/health`
+```
+
+Query:
+```bash
+curl -X POST "http://127.0.0.1:8000/query" \
+  -H "Content-Type: application/json" \
+  -d '{"query":"What is a retriever in LangChain?"}'
+```
+
+Response includes:
+- answer
+- refused flag (for low-relevance / out-of-scope queries)
+- sources with distance + snippet
+
 
 ---
 

@@ -44,6 +44,17 @@ Run:
 python apps/rag/retrieval_qa_v1.py
 ```
 
+### rag_api.py
+A simple RAG system served by FastAPI, and backed by a Chroma vector store.
+
+```bash
+uvicorn apps.rag.rag_api:app --reload
+```
+
+Docs:
+
+http://127.0.0.1:8000/docs
+
 ## Notes
 - Both scripts expect a populated vector store in data/vectorstore/
 - Build the vector DB using the ingestion scripts in /scripts first
