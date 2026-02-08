@@ -37,3 +37,5 @@ data/vectorstore/**
 !data/vectorstore/
 !data/vectorstore/README.md
 
+# ---- System Logs ----
+logs/
