@@ -1,6 +1,6 @@
 # AI System Patterns
 
-A collection of production-oriented patterns for building Retrieval-Augmented Generation (RAG) and agent-based AI systems.
+Production-oriented patterns for building reliable RAG and agent systems – with working code, evaluation, and a live API."
 
 This repository focuses on *how real AI systems are engineered*, not just how to call an LLM API.
 
@@ -166,7 +166,7 @@ Later phases introduce:
 
 This repository is useful for:
 
-- Teams building RAG systems  
-- Engineers designing AI agents  
-- Practitioners evaluating LLM reliability  
-- Anyone interested in production-oriented AI system design  
+- Senior AI Engineers and AI Platform / RAG teams who are designing, evaluating, and shipping production-grade LLM systems  
+- Technical recruiters and hiring managers looking for clear evidence of real system design depth, evaluation practices, and production thinking  
+- Engineers who want to move beyond basic demos and see practical architectural decisions around retrieval, grounding, control flow, and observability
+
