@@ -3,5 +3,7 @@ langchain-openai
 chromadb
 python-dotenv
 tiktoken
-langchain-chromafastapi==0.128.5
-uvicorn==0.40.0
+langchain-chroma
+fastapi
+uvicorn
+requests
