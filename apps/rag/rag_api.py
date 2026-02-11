@@ -64,6 +64,7 @@ class QueryResponse(BaseModel):
     refused: bool
     answer: str
     sources: List[SourceHit]
+    refusal_reason: str | None = None
 
 
 # -------------------------
@@ -177,6 +178,7 @@ def query_endpoint(req: QueryRequest) -> QueryResponse:
             refused=True,
             answer=REFUSAL_TEXT,
             sources=[],
+            refusal_reason=refusal_reason,
         )
 
         log_query({
@@ -233,6 +235,7 @@ Answer:
         refused=refused,
         answer=answer,
         sources=sources,
+        refusal_reason=refusal_reason,
     )
 
     log_query({

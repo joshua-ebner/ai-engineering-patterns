@@ -48,7 +48,7 @@ def main():
         must_refuse = case["must_refuse"]
 
         print(f"--- {eval_id} ---")
-        print(f"Q: {query_text}")
+        print(f"Query: {query_text}")
 
         start_time = time.time()
 
@@ -62,8 +62,10 @@ def main():
         total_latency += latency
 
         response_data = response.json()
-
+        
+        answer = response_data["answer"]
         model_refused = response_data["refused"]
+        refusal_reason = response_data["refusal_reason"]
 
         # Build retrieved source set clearly
         retrieved_sources = set()
@@ -73,6 +75,7 @@ def main():
             source_name = source_item["source"]
             retrieved_sources.add(source_name)
 
+        print(f"Answer: {answer}")
         print(f"Refused: {model_refused}")
         print(f"Sources: {retrieved_sources}")
         print(f"Latency: {latency:.2f}s")
@@ -94,8 +97,10 @@ def main():
                 "ts": time.time(),
                 "eval_id": eval_id,
                 "query": query_text,
+                "answer": answer,
                 "must_refuse": True,
                 "refused": model_refused,
+                "refusal_reason": refusal_reason,
                 "passed": passed,
                 "expected_sources": sorted(expected_sources),
                 "retrieved_sources": sorted(retrieved_sources),
@@ -111,8 +116,10 @@ def main():
                 "ts": time.time(),
                 "eval_id": eval_id,
                 "query": query_text,
+                "answer": answer,
                 "must_refuse": False,
                 "refused": True,
+                "refusal_reason": refusal_reason,
                 "passed": False,
                 "expected_sources": sorted(expected_sources),
                 "retrieved_sources": sorted(retrieved_sources),
@@ -139,8 +146,10 @@ def main():
             "ts": time.time(),
             "eval_id": eval_id,
             "query": query_text,
+            "answer": answer,
             "must_refuse": False,
             "refused": False,
+            "refusal_reason": refusal_reason,
             "passed": hit,
             "expected_sources": sorted(expected_sources),
             "retrieved_sources": sorted(retrieved_sources),
