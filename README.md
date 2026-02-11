@@ -150,18 +150,22 @@ Response includes:
 ---
 
 ## Evaluation Results
-These are the ongoing evaluation results for the parts and phases of the project.
+
+These are ongoing evaluation results for the system.
 
 ### v1 Evaluation (RAG API)
+
 I created a structured evaluation set of 16 queries (including in-scope technical questions and deliberate out-of-scope queries) and built an automated runner that tests the full API end-to-end.
 
 **Current v1 Performance:**
-- Retrieval hit rate: **10/16 (62.5%)**
-- Correct refusals: **3/3**
-- Overall passes: **13/16 (81.25%)**
-- Average latency: **~2.5 seconds**
 
-These metrics provide a baseline for iteration. Future improvements (metadata filtering, better chunking, agent workflows) will be measured against this foundation.
+- Overall pass rate: **13/16 (81.2%)**
+- Retrieval hit rate (answerable queries): **10/13 (76.9%)**
+- Correct refusal rate: **3/3 (100%)**
+- Average latency: **~2.5 seconds**
+- Median latency: **~2.4 seconds**
+
+These metrics provide a baseline for iteration. Future improvements (metadata filtering, chunking strategies, and agent workflows) will be measured against this foundation.
 
 ---
 
