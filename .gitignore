@@ -39,3 +39,6 @@ data/vectorstore/**
 
 # ---- System Logs ----
 logs/
+
+# ---- Evaluation Logs ----
+evals/*.jsonl
