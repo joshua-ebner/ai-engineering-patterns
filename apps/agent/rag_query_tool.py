@@ -2,6 +2,8 @@ from typing import Any, Dict
 import os
 import httpx
 from langchain_core.tools import tool
+from langsmith import traceable
+
 
 # Configurable endpoint
 RAG_API_URL = os.getenv(
@@ -9,28 +11,28 @@ RAG_API_URL = os.getenv(
     "http://127.0.0.1:8000/query"
 )
 
+
+@traceable(name="rag_api_http_call")
+def _call_rag_api(payload: Dict[str, Any]) -> Dict[str, Any]:
+    """Low-level HTTP call to RAG API (traced)."""
+    with httpx.Client(timeout=20.0) as client:
+        resp = client.post(RAG_API_URL, json=payload)
+        resp.raise_for_status()
+        return resp.json()
+
+
 @tool
 def rag_query_tool(query: str) -> Dict[str, Any]:
     """
     Query the RAG API for grounded answers from AI engineering documentation.
-
-    Returns a dict containing:
-    - answer
-    - refused (bool)
-    - sources
-    - refusal_reason
     """
 
     payload = {"query": query.strip()}
 
     try:
-        with httpx.Client(timeout=20.0) as client:
-            resp = client.post(RAG_API_URL, json=payload)
-            resp.raise_for_status()
-            return resp.json()
+        return _call_rag_api(payload)
 
     except Exception as e:
-        # Tool-level failure (different from RAG refusal)
         return {
             "answer": "RAG service unavailable.",
             "refused": True,
