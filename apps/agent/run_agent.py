@@ -6,6 +6,9 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+from dotenv import load_dotenv
+load_dotenv()
+
 LOG_FILE = Path("logs/agent_runs_v1.jsonl")
 
 def log_agent_run(payload: dict):
