@@ -1,8 +1,12 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 from typing import Any, Dict
 import os
 import httpx
 from langchain_core.tools import tool
 from langsmith import traceable
+
 
 
 # Configurable endpoint

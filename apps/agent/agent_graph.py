@@ -8,8 +8,6 @@ from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 
 from .rag_query_tool import rag_query_tool
 
-from dotenv import load_dotenv
-load_dotenv()
 
 # -------------------------
 # State

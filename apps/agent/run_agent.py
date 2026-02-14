@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 from langchain_core.messages import HumanMessage
 from .agent_graph import agent
 
@@ -5,9 +8,6 @@ import json
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-
-from dotenv import load_dotenv
-load_dotenv()
 
 LOG_FILE = Path("logs/agent_runs_v1.jsonl")
 
